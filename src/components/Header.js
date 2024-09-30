@@ -1,8 +1,15 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import CartModal from './CartModal';
+import CardDropDown from "./CardDropDown";
 
 const Header = () => {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen((prev) => !prev);
+    };
+
     const cartItems = useSelector((state) => state.cart.cartItems);
 
     const totalItems = cartItems.reduce((count, item) => count + 1, 0);
@@ -18,7 +25,8 @@ const Header = () => {
         <header className="bg-gray-800 text-white p-4">
             <div className="container mx-auto flex justify-between items-center">
                 <h1 className="text-xl">My Shop</h1>
-                <button onClick={toggleCartModal} className="relative flex items-center text-xl">
+                {/*<button onClick={toggleCartModal} className="relative flex items-center text-xl">*/}
+                <button onMouseEnter={toggleDropdown} className="relative flex items-center text-xl">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                          stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round"
@@ -31,7 +39,17 @@ const Header = () => {
                         </span>
                     )}
                 </button>
+                {isDropdownOpen && (
+                    <div
+                        className="absolute right-3 top-12 w-96 bg-white shadow-lg rounded-lg overflow-hidden z-50"
+                        // onMouseEnter={toggleDropdown} // Keep dropdown open on hover
+                        onMouseLeave={toggleDropdown}
+                    >
+                        <CardDropDown showModal={toggleCartModal}/>
+                    </div>
+                )}
             </div>
+
             {isCartOpen && <CartModal isOpen={isCartOpen} onClose={toggleCartModal}/>}
         </header>
     );
