@@ -1,5 +1,4 @@
 import React from 'react';
-import { Dialog, DialogBackdrop } from '@headlessui/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, updateQuantity } from '../redux/cartSlice';
 
