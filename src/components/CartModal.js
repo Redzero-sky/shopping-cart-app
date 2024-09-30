@@ -24,7 +24,6 @@ const CartModal = ({isOpen, onClose}) => {
             <div className="flex items-center justify-center min-h-screen px-4">
                 <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all max-w-md w-full p-6">
                     <Dialog.Title className="text-2xl font-bold">Your Cart</Dialog.Title>
-
                     {cartItems.length === 0 ? (
                         <div className="mt-4">
                             <p>Your cart is empty.</p>
