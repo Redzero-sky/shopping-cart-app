@@ -32,7 +32,6 @@ const Header = () => {
                     )}
                 </button>
             </div>
-
             {isCartOpen && <CartModal isOpen={isCartOpen} onClose={toggleCartModal}/>}
         </header>
     );
