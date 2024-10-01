@@ -19,8 +19,10 @@ const cartSlice = createSlice({
             toast.success(`${action.payload.name} added to cart!`); // Show toast
         },
         removeFromCart: (state, action) => {
+            let removedItem = state.cartItems.filter((i) => i.id === action.payload);
             state.cartItems = state.cartItems.filter((i) => i.id !== action.payload);
-            toast.error(`1 item removed from cart!`); // Show toast
+            let removedName = removedItem[0].name;
+            toast.error(`${removedName} removed from cart!`); // Show toast
         },
         updateQuantity: (state, action) => {
             const { id, quantity } = action.payload;
